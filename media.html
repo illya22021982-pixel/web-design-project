@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Мультимедіа — Основи вебдизайну та графіки</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Використання мультимедійних елементів HTML5.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header__row">
+    <a class="logo" href="index.html">ZALIK<span>13</span></a>
+
+    <nav class="nav">
+      <a href="index.html">Головна</a>
+      <a href="media.html" class="active">Мультимедіа</a>
+      <a href="graphics.html">Графіка</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ВСТУП -->
+  <section class="hero">
+    <h1>Мультимедіа у вебдизайні</h1>
+    <p class="muted">
+      На цій сторінці продемонстровано використання мультимедійних
+      елементів HTML5, таких як відео, аудіо, вбудовані фрейми та image map.
+    </p>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="card">
+    <h2>Відео (тег &lt;video&gt;)</h2>
+
+    <video controls width="100%">
+      <source src="assets/Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster).mp4" type="video/mp4">
+      Ваш браузер не підтримує відео.
+    </video>
+
+    <p class="muted">
+      Приклад використання локального відеофайлу за допомогою тегу &lt;video&gt;.
+    </p>
+  </section>
+
+  <!-- YOUTUBE -->
+  <section class="card">
+    <h2>Відео з YouTube (тег &lt;iframe&gt;)</h2>
+
+    <section class="card">
+  <h2>Відео з YouTube (тег &lt;iframe&gt;)</h2>
+
+  <iframe
+    width="100%"
+    height="400"
+    src="https://www.youtube.com/embed/ysz5S6PUM-U"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+  <p class="muted">
+  У деяких мережах (навчальні заклади, корпоративні мережі) 
+  вбудовані відео YouTube можуть не відтворюватися через обмеження безпеки.
+</p>
+
+<p>
+  <a href="https://youtu.be/7zokNCh58Sw?si=nr9RedK5pq6qxXNx" target="_blank">
+    ▶ Переглянути відео безпосередньо на YouTube
+  </a>
+</p>
+
+
+  <p class="muted">
+    Відео вбудоване з YouTube за допомогою тегу &lt;iframe&gt;.
+  </p>
+</section>
+
+
+
+
+
+    <p class="muted">
+      Відео, вбудоване з платформи YouTube за допомогою тегу &lt;iframe&gt;.
+    </p>
+  </section>
+
+
+
+  <!-- MAP IFRAME -->
+  <section class="card">
+    <h2>Карта (тег &lt;iframe&gt;)</h2>
+
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html"
+      width="100%"
+      height="400">
+    </iframe>
+
+    <p class="muted">
+      Вбудована інтерактивна карта з використанням тегу &lt;iframe&gt;.
+    </p>
+  </section>
+
+  <!-- IMAGE MAP -->
+  <section class="card">
+    <h2>Image map (теги &lt;map&gt; та &lt;area&gt;)</h2>
+
+    <img
+      src="assets/user-experience-interface-design.webp"
+      alt="Приклад image map"
+      usemap="#demoMap"
+      style="width:100%; max-width:600px; border-radius:12px;">
+
+    <map name="demoMap">
+  <!-- UI дизайн -->
+  <area
+    shape="rect"
+    coords="0,0,300,200"
+    href="https://uxplanet.org/"
+    target="_blank"
+    alt="UI дизайн"
+    title="Статті та приклади UI дизайну">
+
+  <!-- UX дизайн -->
+  <area
+    shape="circle"
+    coords="450,150,80"
+    href="https://www.nngroup.com/articles/"
+    target="_blank"
+    alt="UX дизайн"
+    title="Дослідження та принципи UX">
+</map>
+
+
+    <p class="muted">
+      Приклад використання інтерактивних областей зображення за допомогою
+      тегів &lt;map&gt; та &lt;area&gt;.
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer container">
+  <p class="muted">© Основи вебдизайну та графіки</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Графіка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container header__row">
+    <a class="logo" href="index.html">ZALIK<span>13</span></a>
+    <nav class="nav">
+      <a href="index.html">Головна</a>
+      <a href="media.html">Мультимедіа</a>
+      <a href="graphics.html">Графіка</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="card">
+  <h2>Canvas + JavaScript</h2>
+  <canvas id="myCanvas" width="600" height="250"></canvas>
+</section>
+
+<svg viewBox="0 0 600 200" width="100%" height="200">
+
+  <!-- Анімована рамка -->
+  <rect x="10" y="10" width="580" height="180" rx="25"
+        fill="none"
+        stroke="#38bdf8"
+        stroke-width="4"
+        stroke-dasharray="12 8">
+    <animate
+      attributeName="stroke-dashoffset"
+      from="0"
+      to="40"
+      dur="2s"
+      repeatCount="indefinite" />
+  </rect>
+
+  <!-- Пульсуюче коло -->
+  <circle cx="120" cy="100" r="35"
+          fill="none"
+          stroke="#38bdf8"
+          stroke-width="6">
+    <animate
+      attributeName="r"
+      values="30;42;30"
+      dur="1.6s"
+      repeatCount="indefinite" />
+    <animate
+      attributeName="stroke-opacity"
+      values="1;0.4;1"
+      dur="1.6s"
+      repeatCount="indefinite" />
+  </circle>
+
+  <!-- Hover-підсвітка -->
+  <circle cx="120" cy="100" r="55" fill="transparent">
+    <animate
+      attributeName="fill"
+      from="transparent"
+      to="rgba(56,189,248,0.15)"
+      begin="mouseover"
+      dur="0.3s"
+      fill="freeze" />
+    <animate
+      attributeName="fill"
+      to="transparent"
+      begin="mouseout"
+      dur="0.3s"
+      fill="freeze" />
+  </circle>
+
+  <!-- Текст -->
+  <text x="220" y="110"
+        font-size="24"
+        fill="#e5e7eb"
+        font-family="Arial, sans-serif">
+    Інтерактивна SVG графіка
+  </text>
+
+</svg>
+
+
+</main>
+
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+let x = canvas.width / 2;
+let y = canvas.height / 2;
+let targetX = x;
+let targetY = y;
+
+// масив частинок
+let particles = [];
+
+// рух миші
+canvas.addEventListener("mousemove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  targetX = e.clientX - rect.left;
+  targetY = e.clientY - rect.top;
+});
+
+// клік → вибух
+canvas.addEventListener("click", () => {
+  for (let i = 0; i < 30; i++) {
+    particles.push({
+      x: x,
+      y: y,
+      vx: (Math.random() - 0.5) * 8,
+      vy: (Math.random() - 0.5) * 8,
+      life: 60
+    });
+  }
+});
+
+// малювання
+function draw() {
+  ctx.fillStyle = "#020617";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // плавний рух кулі
+  x += (targetX - x) * 0.08;
+  y += (targetY - y) * 0.08;
+
+  // світіння кулі
+  ctx.shadowColor = "#38bdf8";
+  ctx.shadowBlur = 25;
+
+  ctx.beginPath();
+  ctx.arc(x, y, 35, 0, Math.PI * 2);
+  ctx.fillStyle = "#38bdf8";
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+
+  // текст
+  ctx.fillStyle = "#e5e7eb";
+  ctx.font = "20px Arial";
+  ctx.fillText("Canvas + JavaScript", canvas.width / 2 - 90, canvas.height / 2);
+
+  // частинки
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(56,189,248," + p.life / 60 + ")";
+    ctx.fill();
+
+    if (p.life <= 0) {
+      particles.splice(i, 1);
+    }
+  });
+}
+
+// анімація
+function animate() {
+  draw();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+
+
+
+</body>
+</html>
